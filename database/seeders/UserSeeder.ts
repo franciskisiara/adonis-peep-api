@@ -23,7 +23,11 @@ export default class extends BaseSeeder {
         email: userSeed.email
       }, userSeed)
       
-      user.related('accountGroups').sync([account.id], false)
+      user.related('accountGroups').sync({
+        [account.id]: {
+          account_group_unit_uid: user.id
+        }
+      }, false)
     }
   }
 }

@@ -26,10 +26,10 @@ export default class User extends BaseModel {
   @column.dateTime()
   public verified_at: DateTime
 
-  @column.dateTime({ autoCreate: true })
+  @column.dateTime({ autoCreate: true, serializeAs: null, })
   public createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: null, })
   public updatedAt: DateTime
 
   @beforeSave()
@@ -40,7 +40,7 @@ export default class User extends BaseModel {
   }
 
   @manyToMany(() => AccountGroup, {
-    pivotTable: 'user_account_group',
+    pivotTable: 'account_group_users',
     localKey: 'id',
     pivotForeignKey: 'user_id',
     relatedKey: 'id',
