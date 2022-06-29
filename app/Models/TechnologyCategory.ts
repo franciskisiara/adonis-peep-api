@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
+import Technology from './Technology'
 
 export default class TechnologyCategory extends BaseModel {
   @column({ isPrimary: true })
@@ -16,4 +17,9 @@ export default class TechnologyCategory extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @hasMany(() => Technology, {
+    foreignKey: 'technology_category_id',
+  })
+  public technologies: HasMany<typeof Technology>
 }

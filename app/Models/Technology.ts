@@ -5,6 +5,18 @@ export default class Technology extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public operational_name: string
+
+  @column()
+  public display_name: string
+
+  @column()
+  public technology_category_id: number
+
+  @column()
+  public logo: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
