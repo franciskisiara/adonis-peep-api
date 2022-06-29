@@ -54,7 +54,9 @@ export default class AuthController {
     })
 
     try {
-      const token = await auth.use('api').attempt(payload.email, payload.password)
+      const token = await auth.use('api').attempt(payload.email, payload.password, {
+        expiresIn: '30mins'
+      })
       return response.ok({
         data: token
       })
