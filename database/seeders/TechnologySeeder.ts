@@ -6,62 +6,57 @@ import TechnologyCategory from 'App/Models/TechnologyCategory'
 export default class TechnologySeeder extends BaseSeeder {
   public getTechnologies () {
     return {
-      'Programming language': [
+      'Programming languages': [
         'Javascript', 'Typescript', 'Python', 'MATLAB', 'PHP', 'Perl', 'Ruby','HTML', 'CSS',
-        'Java', 'Kotlin', 'Scala', 'SQL', 'Swift', 'C#', 'C++', 'C', 'Rust', 'Go', 'R',
+        'Java', 'Kotlin', 'Scala', 'SQL', 'Swift', 'C#', 'C++', 'C', 'Rust', 'Go', 'Dart',
       ],
 
-      'Operating system': [
-
+      'Operating systems': [
+        'LINUX', 'MacOs', 'Windows'
       ],
 
       'Libraries and frameworks': [
-
+        'JQuery', 'Vue', 'React', 'Angular', 'Svelte', 'Nuxt', 'Next',
+        'NodeJs', 'ExpressJs', 'AdonisJs', 'NestJs', 'SailsJs', 'MeteorJs',
+        'Flask', 'Django', 'CodeIgniter', 'Laravel', 'Symfony', 'Yii', 'Rails',
+        'Spring', 'Hibernate', 'Quarkus', 'Akka', 'Struts', '.NET', 'Gin',
       ],
 
-      'Databases': [
-
+      'Datastores': [
+        'MySQL', 'Postgres', 'Firebase', 'MongoDB', 'Redis', 'Cassandra', 
       ],
 
       'Message queues': [
-
+        'Kafka', 'RabbitMQ'
       ],
 
-      'Containers and container orchestration': [
-
+      'Containers and virtualization': [
+        'Docker', 'VMWare', 'Virtual box',
       ],
 
       'Cloud providers': [
+        'Amazon web services', 'Google cloud platform', 'Azure'
+      ],
 
+      'Protocol': [
+        'GraphQl', 'REST', 'gRPC'
       ],
 
       'Mobile': [
-
-      ],
-
-      'Open source tools': [
-
+        'Android', 'iOS', 'React native', 'Cordova', 'Flutter', 'Electron', 'Ionic'
       ],
 
       'Dev tools': [
-
+        'Composer', 'Webpack', 'JVM', 'Git'
       ],
 
       'CI/CD tools': [
-
-      ],
-
-      'UX tools': [
-
+        'CircleCI', 'Jenkins', 'Github actions'
       ],
 
       'Productivity tools': [
-
+        'Jira', 'Trello',
       ],
-
-      'Design tools': [
-
-      ]
     }
   }
 
