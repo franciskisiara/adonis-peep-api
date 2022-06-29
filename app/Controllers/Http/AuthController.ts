@@ -20,7 +20,7 @@ export default class AuthController {
 
       const user = await User.firstOrCreate({
         email: payload.email,
-      }, pick(payload, ['email', 'password']), {
+      }, pick(payload, ['name', 'email', 'password']), {
         client: trx
       })
 
@@ -54,9 +54,7 @@ export default class AuthController {
     })
 
     try {
-      const token = await auth.use('api').attempt(payload.email, payload.password, {
-        expiresIn: '30mins'
-      })
+      const token = await auth.use('api').attempt(payload.email, payload.password,)
       return response.ok({
         data: token
       })

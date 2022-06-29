@@ -23,7 +23,8 @@
     "@adonisjs/core",
     "@adonisjs/lucid",
     "@adonisjs/auth",
-    "@adonisjs/redis"
+    "@adonisjs/redis",
+    "@adonisjs/i18n"
   ],
   "aceProviders": [
     "@adonisjs/repl"
@@ -41,5 +42,8 @@
   },
   "testProviders": [
     "@japa/preset-adonis/TestsProvider"
+  ],
+  "metaFiles": [
+    "resources/lang/**/*.(json|yaml)"
   ]
 }

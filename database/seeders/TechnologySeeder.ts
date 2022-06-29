@@ -1,5 +1,5 @@
-import { string } from '@ioc:Adonis/Core/Helpers'
 import { map } from 'lodash'
+import { string } from '@ioc:Adonis/Core/Helpers'
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import TechnologyCategory from 'App/Models/TechnologyCategory'
 

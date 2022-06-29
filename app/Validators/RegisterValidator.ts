@@ -40,6 +40,8 @@ export default class RegisterValidator {
       })
     ]),
 
+    name: schema.string(),
+
     email: schema.string({}, [
       rules.trim(),
       rules.email(),
