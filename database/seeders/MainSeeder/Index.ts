@@ -15,6 +15,7 @@ export default class extends BaseSeeder {
   }
 
   public async run () {
+    await this.runSeeder(await import('../TechnologyCategorySeeder'))
     await this.runSeeder(await import('../AccountGroupSeeder'))
     await this.runSeeder(await import('../UserSeeder'))
   }
