@@ -7,7 +7,8 @@ export default class TechnologySeeder extends BaseSeeder {
   public getTechnologies () {
     return {
       'Programming language': [
-
+        'Javascript', 'Typescript', 'Python', 'MATLAB', 'PHP', 'Perl', 'Ruby','HTML', 'CSS',
+        'Java', 'Kotlin', 'Scala', 'SQL', 'Swift', 'C#', 'C++', 'C', 'Rust', 'Go', 'R',
       ],
 
       'Operating system': [
@@ -78,14 +79,11 @@ export default class TechnologySeeder extends BaseSeeder {
         display_name: categoryName
       })
 
-      const categoryTechnologies = technologies[categoryName]
+      const tech = map(technologies[categoryName], (name) => { 
+        return { name }
+      })
       await category.related('technologies')
-        .updateOrCreateMany(map(categoryTechnologies, (technologyName) => {
-          return {
-            display_name: technologyName,
-            operational_name: string.dashCase(technologyName),
-          }
-        }), 'operational_name')
+        .updateOrCreateMany(tech, 'name')
     }
   }
 }

@@ -6,10 +6,7 @@ export default class Technology extends BaseModel {
   public id: number
 
   @column()
-  public operational_name: string
-
-  @column()
-  public display_name: string
+  public name: string
 
   @column()
   public technology_category_id: number
