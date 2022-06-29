@@ -47,7 +47,7 @@ export default class TechnologySeeder extends BaseSeeder {
       ],
 
       'Dev tools': [
-        'Composer', 'Webpack', 'JVM', 'Git'
+        'Composer', 'Webpack', 'JVM', 'Git', 'npm'
       ],
 
       'CI/CD tools': [
