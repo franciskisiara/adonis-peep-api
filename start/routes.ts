@@ -8,7 +8,7 @@ Route.group(() => {
 
 Route.group(() => {
   Route.resource('knowledge-scales', 'KnowlegeScalesController').only([
-    'index', 'store', 'update', 'destroy'
+    'index', 'store', 'update',
   ])
 })
   .namespace('App/Controllers/Http/Company')
