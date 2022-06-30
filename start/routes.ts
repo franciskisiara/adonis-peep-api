@@ -12,7 +12,7 @@ Route.group(() => {
   ])
 
   Route.resource('profiles', 'ProfilesController').only([
-    'index', 'store', 'update',
+    'index', 'store', 'update', 'destroy'
   ])
 })
   .namespace('App/Controllers/Http/Company')

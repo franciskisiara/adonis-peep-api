@@ -5,7 +5,7 @@ import StoreKnowlegeScaleValidator from 'App/Validators/StoreKnowlegeScaleValida
 import UpdateKnowlegeScaleValidator from 'App/Validators/UpdateKnowlegeScaleValidator'
 
 export default class KnowlegeScalesController {
-  public async index({ request, response }: HttpContextContract) {
+  public async index({ params, request, response }: HttpContextContract) {
     const { 
       page,
       status,
@@ -23,6 +23,7 @@ export default class KnowlegeScalesController {
             builder.preload('company')
           })
       })
+      .where('company_id', params.companyId)
       .orderBy('id', 'desc')
       .paginate(page || 1, 25)
 
@@ -59,7 +60,7 @@ export default class KnowlegeScalesController {
 
     await knowledgScale?.merge(payload).save()
 
-    return response.created({
+    return response.ok({
       data: knowledgScale,
       message: i18n.formatMessage('resources.persisted', {
         resource: 'Knowledge scale'

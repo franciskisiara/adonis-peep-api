@@ -14,6 +14,7 @@ export default class StoreProfileValidator {
           deactivated_at: null,
         }
       })
-    ])
+    ]),
+    description: schema.string.optional()
   })
 }

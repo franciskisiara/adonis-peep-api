@@ -8,13 +8,14 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('name')
       table.integer('company_id').notNullable().unsigned().references('id').inTable('companies').onDelete('CASCADE')
+      table.text('description', 'longText').nullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
-      table.timestamp('deactivated_at', { useTz: true })
+      table.timestamp('deactivated_at', { useTz: true }).nullable()
     })
   }
 

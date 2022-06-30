@@ -13,10 +13,11 @@ export default class Profile extends BaseModel {
   @column()
   public company_id: number
 
-  @column({ 
-    serialize: (value => Boolean(value))
-  })
-  public is_active: Boolean
+  @column()
+  public description: string
+
+  @column.dateTime()
+  public deactivated_at: DateTime
 
   @column.dateTime({ autoCreate: true, serializeAs: null, })
   public createdAt: DateTime
