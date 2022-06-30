@@ -11,7 +11,7 @@ export default class StoreProfileValidator {
         column: 'name',
         where: {
           company_id: this.ctx.company?.id,
-          is_active: true,
+          deactivated_at: null,
         }
       })
     ])
