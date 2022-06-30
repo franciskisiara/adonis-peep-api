@@ -1,15 +1,11 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
-import Company from 'App/Models/Company'
 import Technology from 'App/Models/Technology'
 import Profile from './Profile'
 
 export default class ProfilePoint extends BaseModel {
   @column({ isPrimary: true })
   public id: number
-
-  @column()
-  public name: string
 
   @column()
   public profile_id: number

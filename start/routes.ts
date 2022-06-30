@@ -10,6 +10,10 @@ Route.group(() => {
   Route.resource('knowledge-scales', 'KnowlegeScalesController').only([
     'index', 'store', 'update',
   ])
+
+  Route.resource('profiles', 'ProfilesController').only([
+    'index', 'store', 'update',
+  ])
 })
   .namespace('App/Controllers/Http/Company')
   .middleware(['auth:api', 'company'])
