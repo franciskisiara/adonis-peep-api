@@ -1,3 +1,4 @@
 {
-  "unavailable": "The { resource } specified does not exist"
+  "unavailable": "The { resource } specified does not exist",
+  "unactionable": "You cannot { action } { state } { resource }"
 }

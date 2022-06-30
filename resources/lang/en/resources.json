@@ -1,3 +1,4 @@
 {
-  "persisted": "{ resource } details persisted successfully"
+  "persisted": "{ resource } details persisted successfully",
+  "deactivated": "{ resource } deactivated successfully"
 }
