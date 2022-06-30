@@ -1,5 +1,6 @@
 declare module '@ioc:Adonis/Core/Validator' {
   interface Rules {
-    accountGroup(): Rule
+    accountGroup(): Rule,
+    maximumScale(companyId): Rule,
   }
 }
