@@ -7,11 +7,11 @@ Route.group(() => {
 
 
 Route.group(() => {
-  Route.resource('knowledge-scales', 'KnowlegeScalesController').only([
-    'index', 'store', 'update',
-  ])
+  // Route.resource('knowledge-scales', 'KnowlegeScalesController').only([
+  //   'index', 'store', 'update',
+  // ])
 
-  Route.resource('profiles', 'ProfilesController').only([
+  Route.resource('listings', 'ListingsController').only([
     'index', 'store', 'update', 'destroy'
   ])
 })

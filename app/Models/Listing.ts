@@ -1,9 +1,9 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import Company from 'App/Models/Company'
-import ProfilePoint from './ProfilePoint'
+import ListingPoint from 'App/Models/ListingPoint'
 
-export default class Profile extends BaseModel {
+export default class Listing extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
@@ -30,8 +30,8 @@ export default class Profile extends BaseModel {
   })
   public company: BelongsTo<typeof Company>
 
-  @hasMany(() => ProfilePoint, {
-    foreignKey: 'profile_id'
+  @hasMany(() => ListingPoint, {
+    foreignKey: 'listing_id'
   })
-  public points: HasMany<typeof ProfilePoint>
+  public points: HasMany<typeof ListingPoint>
 }

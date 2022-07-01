@@ -3,31 +3,39 @@ import { DateTime } from 'luxon'
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import User from 'App/Models/User'
 import AccountGroup from 'App/Models/AccountGroup'
+import Company from 'App/Models/Company'
 
 export default class extends BaseSeeder {
   public async run () {
-    const account = await AccountGroup.findByOrFail('name', 'superuser')
+    const accounts = await AccountGroup
+      .query()
+      .whereIn('name', [
+        'superuser',
+        'company',
+      ])
 
-    const users = [
-      { 
-        name: 'Frank', 
-        email: 'franciskisiara@gmail.com', 
-        password: 'sudo', 
-        verified_at: DateTime.now(),
+    const user = await User.firstOrCreate({
+      email: 'franciskisiara@gmail.com'
+    }, {
+      name: 'Frank', 
+      password: 'sudo', 
+      verified_at: DateTime.now(),
+    })
+
+    const company = await Company.firstOrCreate({
+      name: 'PEEP'
+    })
+
+    const su = accounts.find(({ name }) => name == 'superuser')
+    const co = accounts.find(({ name }) => name == 'company')
+
+    user.related('accountGroups').sync({
+      [su!.id]: {
+        account_group_unit_uid: user.id
       },
-    ]
-
-    for (let i=0; i<users.length; i++) {
-      const userSeed = users[i]
-      const user = await User.firstOrCreate({
-        email: userSeed.email
-      }, userSeed)
-      
-      user.related('accountGroups').sync({
-        [account.id]: {
-          account_group_unit_uid: user.id
-        }
-      }, false)
-    }
+      [co!.id]: {
+        account_group_unit_uid: company.id
+      },
+    }, false)
   }
 }

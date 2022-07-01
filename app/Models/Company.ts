@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
-import Profile from './Profile'
+import Profile from './Listing'
 
 export default class Company extends BaseModel {
   @column({ isPrimary: true })

@@ -47,16 +47,32 @@ export default class AuthController {
       schema: schema.create({
         email: schema.string({}, [
           rules.trim(),
-          rules.email()
+          rules.email(),
+          rules.exists({
+            table: 'users',
+            column: 'email',
+          })
         ]),
         password: schema.string()
       })
     })
 
     try {
-      const token = await auth.use('api').attempt(payload.email, payload.password,)
+      const user = await User.findByOrFail('email', payload.email)
+      const { token } = await auth.use('api').generate(user)
+      const accountGroup = await AccountGroup.findByOrFail('name', 'company')
+      const unitAccount = await Database.from('account_group_users')
+        .where('account_group_id', accountGroup.id)
+        .where('user_id', user.id)
+        .first()
+      const company = await Company.findOrFail(unitAccount.account_group_unit_uid)
+
       return response.ok({
-        data: token
+        data: {
+          token,
+          user,
+          company,
+        }
       })
     } catch {
       return response.unauthorized({

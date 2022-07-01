@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import KnowlegeScale from 'App/Models/KnowlegeScale'
+import KnowlegeScale from 'App/Models/KnowledgeScalee'
 import StoreKnowlegeScaleValidator from 'App/Validators/StoreKnowlegeScaleValidator'
 import UpdateKnowlegeScaleValidator from 'App/Validators/UpdateKnowlegeScaleValidator'
 

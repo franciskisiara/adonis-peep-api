@@ -1,21 +1,21 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import StoreProfileValidator from 'App/Validators/StoreProfileValidator'
-import Profile from 'App/Models/Profile'
+import Listing from 'App/Models/Listing'
 import UpdateProfileValidator from 'App/Validators/UpdateProfileValidator'
 import { DateTime } from 'luxon'
 
-export default class ProfilesController {
+export default class ListingsController {
   public async index({ params, request, response }: HttpContextContract) {
     const {
       page,
     } = request.qs()
 
-    const profiles = await Profile.query()
+    const listings = await Listing.query()
       .where('company_id', params.companyId)
       .orderBy('id', 'desc')
       .paginate(page || 1, 25)
 
-    return response.send(profiles)
+    return response.send(listings)
   }
 
   public async store({ i18n, params, request, response }: HttpContextContract) {

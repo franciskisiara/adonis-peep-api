@@ -1,12 +1,12 @@
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import KnowlegeScale from 'App/Models/KnowlegeScale'
+import KnowledgeScale from 'App/Models/KnowledgeScale'
 
 export const maximumScale = {
   action: async (_, [companyId], options) => {
     const MAXIMUM_ACTIVE_SCALES = 6
 
-    const dets = await KnowlegeScale.query()
+    const dets = await KnowledgeScale.query()
       .where('company_id', companyId)
       .where('is_active', true)
   
@@ -27,7 +27,7 @@ export const maximumScale = {
   }
 }
 
-export default class StoreKnowlegeScaleValidator {
+export default class StoreKnowledgeScaleValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({

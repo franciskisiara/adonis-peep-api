@@ -1,14 +1,14 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import Technology from 'App/Models/Technology'
-import Profile from './Profile'
+import Listing from 'App/Models/Listing'
 
 export default class ProfilePoint extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public profile_id: number
+  public listing_id: number
 
   @column()
   public technology_id: number
@@ -28,10 +28,10 @@ export default class ProfilePoint extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @belongsTo(() => Profile, {
-    foreignKey: 'profile_id'
+  @belongsTo(() => Listing, {
+    foreignKey: 'listing_id'
   })
-  public profile: BelongsTo<typeof Profile>
+  public listing: BelongsTo<typeof Listing>
 
   @belongsTo(() => Technology, {
     foreignKey: 'technology_id'
