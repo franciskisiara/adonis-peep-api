@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Company from 'App/Models/Company'
 import User from 'App/Models/User'
 import LoginValidator from 'App/Validators/LoginValidator'
 export default class LoginController {
@@ -13,20 +14,33 @@ export default class LoginController {
           .where('user_accounts.account_group', account_group)
       })
       .firstOrFail()
-    
-    response.abortIf(user.verified_at == null, i18n.formatMessage('errors.account.unverified'), 400)
-    response.abortIf(user.accounts.length == 0, i18n.formatMessage('errors.account.unavailable', {
+
+    response.abortIf(!user.verified_at, i18n.formatMessage('errors.account.unverified'), 400)
+    response.abortIf(!user.accounts.length, i18n.formatMessage('errors.account.unavailable', {
       account_group,
     }), 400)
 
     try {
       const { token } = await auth.use('api').attempt(email, password)
+      const serializedUser = user.serialize()
+
+      delete serializedUser.accounts
       return response.ok({
-        token,
-        user,
+        data: {
+          token,
+          user: serializedUser,
+          ...(account_group == 'business' && {
+            company: await Company.find(
+              user.accounts[0].account_unit_uid
+            )
+          })
+        },
+        message: i18n.formatMessage('core.authenticated')
       })
     } catch {
-      return response.badRequest('Invalid credentials')
+      return response.badRequest({
+        message: i18n.formatMessage('errors.account.credentials')
+      })
     }
   }
 }

@@ -3,6 +3,7 @@
   "unactionable": "You cannot { action } { state } { resource }",
 
   "account": {
+    "credentials": "Wrong email or password provided",
     "unverified": "Please verify your email address in order to proceed",
     "unavailable": "Sorry! You do not have an active { account_group } account"
   }

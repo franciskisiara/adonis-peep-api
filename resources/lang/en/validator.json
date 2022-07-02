@@ -1,6 +1,7 @@
 {
   "shared": {
-    "required": "The { field } is required",
-    "maximumScale": "Maximum allowed configurations reached"
+    "exists": "The { field } provided does not exist",
+    "maximumScale": "Maximum allowed configurations reached",
+    "required": "The { field } is required"
   }
 }
