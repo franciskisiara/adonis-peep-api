@@ -2,40 +2,51 @@ import { DateTime } from 'luxon'
 
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import User from 'App/Models/User'
-import AccountGroup from 'App/Models/AccountGroup'
 import Company from 'App/Models/Company'
+import UserAccount from 'App/Models/UserAccount'
 
 export default class extends BaseSeeder {
-  public async run () {
-    const accounts = await AccountGroup
-      .query()
-      .whereIn('name', [
-        'superuser',
-        'company',
-      ])
-
-    const user = await User.firstOrCreate({
+  private registerUser () {
+    return User.firstOrCreate({
       email: 'franciskisiara@gmail.com'
     }, {
       name: 'Frank', 
       password: 'sudo', 
       verified_at: DateTime.now(),
     })
+  }
 
+  private async getAccounts (user) {
     const company = await Company.firstOrCreate({
-      name: 'PEEP'
+      name: 'PEEP Recruitment Agency'
     })
 
-    const su = accounts.find(({ name }) => name == 'superuser')
-    const co = accounts.find(({ name }) => name == 'company')
+    return [{
+      account_group: 'architects',
+    }, {
+      account_group: 'businesses',
+      account_unit_uid: company.id,
+    }, {
+      account_group: 'candidates',
+    }].map(account => {
+      return {
+        user_id: user.id,
+        is_active: true,
+        ...account,
+        ...(!account.account_unit_uid && {
+          account_unit_uid: user.id
+        })
+      }
+    })
+  }
 
-    user.related('accountGroups').sync({
-      [su!.id]: {
-        account_group_unit_uid: user.id
-      },
-      [co!.id]: {
-        account_group_unit_uid: company.id
-      },
-    }, false)
+  public async run () {
+    const user = await this.registerUser()
+    const accounts = await this.getAccounts(user)
+
+    for (let index = 0; index < accounts.length; index++) {
+      const account = accounts[index]
+      await UserAccount.updateOrCreate(account, account)
+    }
   }
 }

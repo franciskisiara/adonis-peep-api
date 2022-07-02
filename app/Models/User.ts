@@ -1,13 +1,12 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import AccountGroup from 'App/Models/AccountGroup'
-
+import UserAccount from 'App/Models/UserAccount'
 import { 
   column, 
   beforeSave, 
   BaseModel, 
-  ManyToMany, 
-  manyToMany 
+  hasMany,
+  HasMany
 } from '@ioc:Adonis/Lucid/Orm'
 
 export default class User extends BaseModel {
@@ -39,12 +38,8 @@ export default class User extends BaseModel {
     }
   }
 
-  @manyToMany(() => AccountGroup, {
-    pivotTable: 'account_group_users',
-    localKey: 'id',
-    pivotForeignKey: 'user_id',
-    relatedKey: 'id',
-    pivotRelatedForeignKey: 'account_group_id',
+  @hasMany(() => UserAccount, {
+    foreignKey: 'user_id',
   })
-  public accountGroups: ManyToMany<typeof AccountGroup>
+  public accounts: HasMany<typeof UserAccount>
 }
