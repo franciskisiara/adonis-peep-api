@@ -22,12 +22,12 @@ export default class extends BaseSeeder {
     })
 
     return [{
-      account_group: 'architects',
+      account_group: 'architect',
     }, {
-      account_group: 'businesses',
+      account_group: 'business',
       account_unit_uid: company.id,
     }, {
-      account_group: 'candidates',
+      account_group: 'candidate',
     }].map(account => {
       return {
         user_id: user.id,

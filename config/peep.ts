@@ -6,9 +6,9 @@ export const peep = {
      * alias - ABC of stakeholder management
      */
     account_groups: [
-      'architects',
-      'businesses',
-      'candidates',
+      'architect',
+      'business',
+      'candidate',
     ]
   }
 }

@@ -1,4 +1,9 @@
 {
   "unavailable": "The { resource } specified does not exist",
-  "unactionable": "You cannot { action } { state } { resource }"
+  "unactionable": "You cannot { action } { state } { resource }",
+
+  "account": {
+    "unverified": "Please verify your email address in order to proceed",
+    "unavailable": "Sorry! You do not have an active { account_group } account"
+  }
 }
